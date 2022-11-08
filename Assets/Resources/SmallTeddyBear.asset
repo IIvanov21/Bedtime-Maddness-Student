@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13784e828a7db4f4ba1f56265e848485, type: 3}
   m_Name: SmallTeddyBear
   m_EditorClassIdentifier: 
-  actorName: 
-  actorType: 0
-  description: 
-  health: 0
-  speed: 0
-  hitPower: 0
-  actor: {fileID: 0}
+  actorName: SmallTeddyBear
+  actorType: 1
+  description: The small annoying teddy that will chase me.
+  health: 1
+  speed: 20
+  hitPower: 1
+  actor: {fileID: 6544782646228437319, guid: 343600b90648c254a9461fb5710cd2b7, type: 3}
   actorBullets: {fileID: 0}
