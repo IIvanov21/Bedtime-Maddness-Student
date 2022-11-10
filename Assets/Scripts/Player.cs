@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IActorTemplate
 {
+
     //Default values
     float speed;
     int health;
@@ -14,6 +15,9 @@ public class Player : MonoBehaviour, IActorTemplate
 
     [SerializeField]
     GameObject shootPoint;
+
+    float horizontalInput;
+    float verticalInput;
 
     public int Health
     {
@@ -29,6 +33,37 @@ public class Player : MonoBehaviour, IActorTemplate
 
     GameObject _Player;
 
+    void Start()
+    {
+        _Player = GameObject.Find("_Player");
+    }
+
+    void Update()
+    {
+        //Creating the Move function
+        Move();
+    }
+
+    void FixedUpdate()
+    {
+
+    }
+
+    void Move()
+    {
+        horizontalInput = Input.GetAxis("Horizontal");
+        verticalInput = Input.GetAxis("Vertical");
+
+        //Forward/Backwards movement
+        transform.Translate(Vector3.forward * verticalInput * speed * Time.deltaTime);
+
+        //Left/Right movement
+        transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
+
+
+    }
+
+   
 
     public int SendDamage()
     {
@@ -37,12 +72,12 @@ public class Player : MonoBehaviour, IActorTemplate
 
     public void TakeDamage(int incomingDamage)
     {
-        
+        health-=incomingDamage;
     }
 
     public void Die()
     {
-        
+        Destroy(gameObject);
     }
 
     public void ActorStats(SOActorModel actorModel)
@@ -53,4 +88,6 @@ public class Player : MonoBehaviour, IActorTemplate
         actor = actorModel.actor;
         fire = actorModel.actorBullets;
     }
+
+
 }
