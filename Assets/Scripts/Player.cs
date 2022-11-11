@@ -42,12 +42,12 @@ public class Player : MonoBehaviour, IActorTemplate
     {
         //Creating the Move function
         Move();
+
+        //Create the Attack function
+        Attack();
     }
 
-    void FixedUpdate()
-    {
-
-    }
+    
 
     void Move()
     {
@@ -63,7 +63,15 @@ public class Player : MonoBehaviour, IActorTemplate
 
     }
 
-   
+    void Attack()
+    {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            //Create a new bullet and pass it player's shoot point reference position and rotation
+            GameObject bullet = GameObject.Instantiate(fire, shootPoint.transform.position, shootPoint.transform.rotation);
+            bullet.transform.SetParent(_Player.transform);
+        }
+    }
 
     public int SendDamage()
     {
