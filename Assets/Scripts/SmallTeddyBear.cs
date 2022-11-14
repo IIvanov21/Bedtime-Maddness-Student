@@ -32,13 +32,47 @@ public class SmallTeddyBear : MonoBehaviour, IActorTemplate
         health -= incomingDamage;
     }
 
-    void OnTriggerEnter(Collider collider)
+    void OnTriggerEnter(Collider other)
     {
-        if (collider.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
-            Debug.Log("Player has collided with Enemy!");
-            Die();
+            if (health >= 1)
+            {
+                Debug.Log("Enemy has been damaged!");
+                TakeDamage(other.GetComponent<IActorTemplate>().SendDamage());
+            }
+            else if (health <= 0)
+            {
+                Debug.Log("Enemy has died!");
+                Die();
+            }
         }
     }
 
+
+    //Example functions for collisions
+    void OnTriggerStay(Collider other)
+    {
+        
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        
+    }
+
+    void OnCollisionEnter(Collision other)
+    {
+       
+    }
+
+    void OnCollisionStay(Collision other)
+    {
+        
+    }
+
+    void OnCollisionExit(Collision other)
+    {
+        
+    }
 }

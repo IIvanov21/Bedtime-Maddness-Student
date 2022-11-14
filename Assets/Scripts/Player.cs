@@ -80,7 +80,7 @@ public class Player : MonoBehaviour, IActorTemplate
 
     public void TakeDamage(int incomingDamage)
     {
-        health-=incomingDamage;
+        health+=incomingDamage;
     }
 
     public void Die()
@@ -96,6 +96,25 @@ public class Player : MonoBehaviour, IActorTemplate
         actor = actorModel.actor;
         fire = actorModel.actorBullets;
     }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            //If our health is below 100
+            if (health < 100)
+            {
+                //Suffocation level at start of the game is 0%
+                TakeDamage(other.GetComponent<IActorTemplate>().SendDamage());
+                Debug.Log("Player's health:" + health);
+            }
+            else if (health >= 100)
+            {
+                Die();
+            }
+        }
+    }
+
 
 
 }
