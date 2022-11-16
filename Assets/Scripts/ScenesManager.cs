@@ -7,13 +7,13 @@ public class ScenesManager : MonoBehaviour
     //Create a custom enumrator for our a scene
     public enum Scenes
     {
-        bootUp,
-        title,
-        waveOne,
-        waveTwo,
-        waveThree,
-        waveBoss,
-        gameOver
+        bootUp,//0
+        title,//1
+        waveOne,//2
+        waveTwo,//3
+        waveThree,//4
+        waveBoss,//5
+        gameOver//6
     }
 
     public void ResetScene()

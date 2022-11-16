@@ -81,6 +81,7 @@ public class Player : MonoBehaviour, IActorTemplate
     public void TakeDamage(int incomingDamage)
     {
         health+=incomingDamage;
+        GameManager.playerHealth += incomingDamage;
     }
 
     public void Die()
@@ -107,9 +108,11 @@ public class Player : MonoBehaviour, IActorTemplate
                 //Suffocation level at start of the game is 0%
                 TakeDamage(other.GetComponent<IActorTemplate>().SendDamage());
                 Debug.Log("Player's health:" + health);
+                GameManager.Instance.LifeSystemTracker();
             }
             else if (health >= 100)
             {
+                GameManager.Instance.LifeSystemTracker();
                 Die();
             }
         }

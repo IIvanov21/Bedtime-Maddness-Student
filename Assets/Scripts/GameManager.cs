@@ -21,13 +21,18 @@ public class GameManager : MonoBehaviour
     //Scenes values
     public int currentScene = 0;
     public static int gameLevelScenes = 4;
-   
 
+    //Player values
+    public static int playerHealth = 0;
     // Start is called before the first frame update
     void Start()
     {
         //1. Configure our light settings
         LightSetup(currentScene);
+
+        //Reset the player's health when restarting a level
+        playerHealth = 0;
+
     }
 
     // Update is called once per frame
@@ -78,5 +83,18 @@ public class GameManager : MonoBehaviour
         }
         //If it does already exist destroy the new game object.
         else Destroy(this.gameObject);
+    }
+
+    public void LifeSystemTracker()
+    {
+        if (playerHealth < 100)//Keep playing the game
+        {
+            Debug.Log("Player's current suffocation level is:" + playerHealth + "%");
+        }
+        else
+        {
+            Debug.Log("Player's current suffocation level is:" + playerHealth + "% We are dead!");
+            GetComponent<ScenesManager>().GameOver();//Move us to the game over scene
+        }
     }
 }
