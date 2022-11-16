@@ -80,7 +80,8 @@ public class Player : MonoBehaviour, IActorTemplate
 
     public void TakeDamage(int incomingDamage)
     {
-        health-=incomingDamage;
+        health+=incomingDamage;
+        GameManager.playerHealth += incomingDamage;
     }
 
     public void Die()
@@ -97,5 +98,21 @@ public class Player : MonoBehaviour, IActorTemplate
         fire = actorModel.actorBullets;
     }
 
+    void OnTriggerEnter(Collider otherCollider)
+    {
+        if (otherCollider.CompareTag("Enemy"))
+        {
+            if (health < 100)
+            {
+                TakeDamage(otherCollider.GetComponent<IActorTemplate>().SendDamage());
+                GameManager.Instance.LifeSystemTracker();
+            }
+            else
+            {
+                GameManager.Instance.LifeSystemTracker();
+                Die();
+            }
+        }
+    }
 
 }

@@ -4,7 +4,20 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    //Singleton value
+    private static GameManager instance;
+    public static GameManager Instance
+    {
+        get { return instance; }
+        private set { instance = value; }
+    }
+    //Player values
+    public static int playerHealth = 0;
 
+    private void Awake()
+    {
+        CheckGameManager();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,5 +52,30 @@ public class GameManager : MonoBehaviour
         //Set rendering method
         gameCamera.GetComponent<Camera>().clearFlags = CameraClearFlags.Skybox;
 
+    }
+
+    void CheckGameManager()
+    {
+        //Create a Game Manager singleton if one doesn't exist
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else Destroy(this.gameObject);//Destroy the new instance if a singleton already exist
+    }
+
+    public void LifeSystemTracker()
+    {
+        if (playerHealth < 100)
+        {
+            Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
+        }
+        else
+        {//If we die load the game over scene
+            Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
+            GetComponent<ScenesManager>().GameOver();
+
+        }
     }
 }

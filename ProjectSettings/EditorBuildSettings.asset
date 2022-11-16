@@ -4,5 +4,29 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/bootUp.unity
+    guid: 4f53e60f1d0c5ad41a1c0d942da7967c
+  - enabled: 1
+    path: Assets/Scenes/title.unity
+    guid: 042a6593072db6247ab6b619ddfd308b
+  - enabled: 1
+    path: Assets/Scenes/waveOne.unity
+    guid: 79032d3fa177a364d90e55a87e26b0a7
+  - enabled: 1
+    path: Assets/Scenes/waveTwo.unity
+    guid: cf5e831499048db4eba5887520f258a1
+  - enabled: 1
+    path: Assets/Scenes/waveThree.unity
+    guid: 9d52e796e56e7de4089ee10967fd7951
+  - enabled: 1
+    path: Assets/Scenes/waveBoss.unity
+    guid: 864cc3a151c2c1c4dae718776060a9fa
+  - enabled: 1
+    path: Assets/Scenes/gameOver.unity
+    guid: 12aa9ba4383728641984afa5995ed9e1
+  - enabled: 1
+    path: Assets/Scenes/testScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
