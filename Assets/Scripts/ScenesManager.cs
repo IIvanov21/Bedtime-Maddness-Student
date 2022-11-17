@@ -25,6 +25,7 @@ public class ScenesManager : MonoBehaviour
     public void GameOver()
     {
         SceneManager.LoadScene((int)Scenes.gameOver);
+        
     }
 
     public void BeginGame()

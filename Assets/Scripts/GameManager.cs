@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(ScoreManager))]
+[RequireComponent(typeof(ScenesManager))]
+
 public class GameManager : MonoBehaviour
 {
     //Singleton value
@@ -23,6 +26,9 @@ public class GameManager : MonoBehaviour
     {
         //1. Configure our light settings
         LightSetup();
+
+        //Set our score to 0 at the beginning of our game
+        GetComponent<ScoreManager>().ResetScore();
     }
 
     // Update is called once per frame

@@ -8,13 +8,14 @@ public class SmallTeddyBear : MonoBehaviour, IActorTemplate
     float speed;
     int health;
     int hitPower;
+    int score;
 
     public void ActorStats(SOActorModel actorModel)
     {
         speed = actorModel.speed;
         health = actorModel.health;
         hitPower = actorModel.hitPower;
-        
+        score= actorModel.score;
     }
 
     public void Die()
@@ -43,7 +44,10 @@ public class SmallTeddyBear : MonoBehaviour, IActorTemplate
 
             if (health == 0)
             {
+                GameManager.Instance.GetComponent<ScoreManager>().SetScore(score);
+                Debug.Log("Player's score: " + GameManager.Instance.GetComponent<ScoreManager>().PlayerScore);
                 Die();
+
             }
         }
     }
