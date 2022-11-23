@@ -1,38 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
+[RequireComponent(typeof(ScoreManager))]
+[RequireComponent(typeof(ScenesManager))]
 
 public class GameManager : MonoBehaviour
 {
-    static GameManager instance;
+    //Singleton value
+    private static GameManager instance;
     public static GameManager Instance
     {
         get { return instance; }
         private set { instance = value; }
     }
+    //Player values
+    public static int playerHealth = 0;
 
     private void Awake()
     {
         CheckGameManager();
-        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
-
-    //Scenes values
-    public int currentScene = 0;
-    public static int gameLevelScenes = 4;
-
-    //Player values
-    public static int playerHealth = 0;
     // Start is called before the first frame update
     void Start()
     {
         //1. Configure our light settings
-        LightSetup(currentScene);
+        LightSetup();
 
-        //Reset the player's health when restarting a level
-        playerHealth = 0;
-
+        //Set our score to 0 at the beginning of our game
+        GetComponent<ScoreManager>().ResetScore();
     }
 
     // Update is called once per frame
@@ -41,21 +37,13 @@ public class GameManager : MonoBehaviour
 
     }
 
-    void LightSetup(int sceneIndex)
+    void LightSetup()
     {
-        switch (sceneIndex)
-        {
-            case (int)ScenesManager.Scenes.waveOne: case 3: case 4: case 5:
-                {
-                    //1. Get a reference to our light
-                    GameObject dirLight = GameObject.Find("Directional Light");
-                    dirLight.transform.position = new Vector3(30, 55, -50);//Set a default position
-                    dirLight.transform.eulerAngles = new Vector3(22, -30, 0); //Set a default rotation
-                    dirLight.GetComponent<Light>().color = new Color32(102, 118, 130, 255);
-
-                    break;
-                }
-        }
+        //1. Get a reference to our light
+        GameObject dirLight = GameObject.Find("Directional Light");
+        dirLight.transform.position = new Vector3(30, 55, -50);//Set a default position
+        dirLight.transform.eulerAngles = new Vector3(22, -30, 0); //Set a default rotation
+        dirLight.GetComponent<Light>().color = new Color32(102, 118, 130, 255);
     }
 
     //2. Create configuration for out Camera
@@ -74,27 +62,26 @@ public class GameManager : MonoBehaviour
 
     void CheckGameManager()
     {
-        //If we are creating the Game Manager for a first time
-        //Assign it to our instance that we are using as accessor(singleton)
+        //Create a Game Manager singleton if one doesn't exist
         if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        //If it does already exist destroy the new game object.
-        else Destroy(this.gameObject);
+        else Destroy(this.gameObject);//Destroy the new instance if a singleton already exist
     }
 
     public void LifeSystemTracker()
     {
-        if (playerHealth < 100)//Keep playing the game
+        if (playerHealth < 100)
         {
-            Debug.Log("Player's current suffocation level is:" + playerHealth + "%");
+            Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
         }
         else
-        {
-            Debug.Log("Player's current suffocation level is:" + playerHealth + "% We are dead!");
-            GetComponent<ScenesManager>().GameOver();//Move us to the game over scene
+        {//If we die load the game over scene
+            Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
+            GetComponent<ScenesManager>().GameOver();
+
         }
     }
 }

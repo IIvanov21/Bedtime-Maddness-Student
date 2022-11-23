@@ -19,6 +19,7 @@ public class Player : MonoBehaviour, IActorTemplate
     float horizontalInput;
     float verticalInput;
 
+
     public int Health
     {
         get { return health; }
@@ -32,6 +33,9 @@ public class Player : MonoBehaviour, IActorTemplate
     }
 
     GameObject _Player;
+
+    [SerializeField]
+    ParticleSystem walkingParticles;
 
     void Start()
     {
@@ -60,7 +64,7 @@ public class Player : MonoBehaviour, IActorTemplate
         //Left/Right movement
         transform.Translate(Vector3.right * horizontalInput * speed * Time.deltaTime);
 
-
+        ControlParticles();
     }
 
     void Attack()
@@ -98,19 +102,16 @@ public class Player : MonoBehaviour, IActorTemplate
         fire = actorModel.actorBullets;
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider otherCollider)
     {
-        if (other.CompareTag("Enemy"))
+        if (otherCollider.CompareTag("Enemy"))
         {
-            //If our health is below 100
             if (health < 100)
             {
-                //Suffocation level at start of the game is 0%
-                TakeDamage(other.GetComponent<IActorTemplate>().SendDamage());
-                Debug.Log("Player's health:" + health);
+                TakeDamage(otherCollider.GetComponent<IActorTemplate>().SendDamage());
                 GameManager.Instance.LifeSystemTracker();
             }
-            else if (health >= 100)
+            else
             {
                 GameManager.Instance.LifeSystemTracker();
                 Die();
@@ -118,6 +119,9 @@ public class Player : MonoBehaviour, IActorTemplate
         }
     }
 
-
-
+    void ControlParticles()
+    {
+        if (horizontalInput == 0 && verticalInput == 0) walkingParticles.Stop();// If we are idle Stop the particle system
+        else if (!walkingParticles.isPlaying) walkingParticles.Play();//If we are moving Start the particle system
+    }
 }

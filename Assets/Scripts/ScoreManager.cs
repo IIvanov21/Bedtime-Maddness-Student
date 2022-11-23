@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class ScoreManager : MonoBehaviour
 {
-    //Values to track the player score
-    static int playerScore;
+    private int playerScore;
     public int PlayerScore
     {
         get { return playerScore; }
-        private set { playerScore = value; }
+        set { playerScore = value; }
     }
 
-    //Simple reset function
-    public void Reset()
-    {
-        playerScore = 0;
-    }
-
-    //Update player score
     public void SetScore(int incomingScore)
     {
         playerScore += incomingScore;
+    }
+
+    public void ResetScore()
+    {
+        playerScore = 0;
     }
 }

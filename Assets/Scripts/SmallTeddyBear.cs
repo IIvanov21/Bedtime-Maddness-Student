@@ -15,7 +15,7 @@ public class SmallTeddyBear : MonoBehaviour, IActorTemplate
         speed = actorModel.speed;
         health = actorModel.health;
         hitPower = actorModel.hitPower;
-        score = actorModel.score; 
+        score= actorModel.score;
     }
 
     public void Die()
@@ -35,49 +35,20 @@ public class SmallTeddyBear : MonoBehaviour, IActorTemplate
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if(other.CompareTag("Player"))
         {
             if (health >= 1)
             {
-                Debug.Log("Enemy has been damaged!");
                 TakeDamage(other.GetComponent<IActorTemplate>().SendDamage());
-                
             }
-            
+
             if (health == 0)
             {
-                Debug.Log("Enemy has died!");
                 GameManager.Instance.GetComponent<ScoreManager>().SetScore(score);
                 Debug.Log("Player's score: " + GameManager.Instance.GetComponent<ScoreManager>().PlayerScore);
                 Die();
+
             }
         }
-    }
-
-
-    //Example functions for collisions
-    void OnTriggerStay(Collider other)
-    {
-        
-    }
-
-    void OnTriggerExit(Collider other)
-    {
-        
-    }
-
-    void OnCollisionEnter(Collision other)
-    {
-       
-    }
-
-    void OnCollisionStay(Collision other)
-    {
-        
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        
     }
 }

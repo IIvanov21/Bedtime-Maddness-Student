@@ -16,7 +16,7 @@ MonoBehaviour:
   actorType: 4
   description: Nerf gun bullet for the player
   health: 1
-  speed: 200
+  speed: 50
   hitPower: 1
   actor: {fileID: 3261021620916747094, guid: 920c44686c5c1e544ba021e54e9def03, type: 3}
   actorBullets: {fileID: 0}

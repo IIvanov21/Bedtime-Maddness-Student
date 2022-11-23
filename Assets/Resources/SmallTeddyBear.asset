@@ -15,8 +15,9 @@ MonoBehaviour:
   actorName: SmallTeddyBear
   actorType: 1
   description: The small annoying teddy that will chase me.
-  health: 5
+  health: 1
   speed: 20
-  hitPower: 15
+  hitPower: 1
+  score: 100
   actor: {fileID: 6544782646228437319, guid: 343600b90648c254a9461fb5710cd2b7, type: 3}
   actorBullets: {fileID: 0}

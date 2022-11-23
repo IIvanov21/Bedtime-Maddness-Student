@@ -14,7 +14,6 @@ public class PlayerAnimations : MonoBehaviour
 
     private void Awake()
     {
-        //Grab the animator component
         playerAnimator = GetComponent<Animator>();
     }
     // Start is called before the first frame update
@@ -26,38 +25,36 @@ public class PlayerAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Capturing the movement i.e. WASD or Arrow keys input
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        MovingAnimation();
+        MoveAnimation();
 
         if (Input.GetButtonDown("Fire1"))
         {
-            Shooting();
+            ShootingAnimation();
         }
         else if (Input.GetButtonUp("Fire1"))
         {
-            Shooting();
+            ShootingAnimation();
         }
     }
 
-    //Moving Animations function
-    void MovingAnimation()
+    void MoveAnimation()
     {
-        UpdateAnimation(horizontal, vertical);
+        UpdateAnimations(horizontal, vertical);
     }
 
-    //Shooting Animation function
-    void Shooting()
+    void ShootingAnimation()
     {
-        shooting = !shooting; //Simply swtich between true and false
+        shooting = !shooting;//Switch statement
+
         playerAnimator.SetBool("isShooting", shooting);
     }
-    //Create an Update Animation function
-    public void UpdateAnimation(float h, float v)//Takes horizontal and vertical values to control animations
+
+    public void UpdateAnimations(float h, float v)//Being able to pass horizontal and vertical input inside the function
     {
-        playerAnimator.SetFloat("horizontal", h);
+        playerAnimator.SetFloat("horizontal",h);
         playerAnimator.SetFloat("vertical", v);
     }
 }
