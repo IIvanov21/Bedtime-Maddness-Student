@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;//UI Components
+using TMPro;//Text Mesh Pro
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
 
@@ -16,6 +17,18 @@ public class GameManager : MonoBehaviour
     }
     //Player values
     public static int playerHealth = 0;
+
+    //Level UI properties
+    bool isPaused = false;
+    [SerializeField]
+    GameObject pauseMenu;
+
+    //Property to manage player health
+    [SerializeField]
+    Slider playerHealthBar;
+
+    [SerializeField]
+    TMP_Text scoreText;
 
     private void Awake()
     {
@@ -34,7 +47,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape)) PauseGame();
+        
     }
 
     void LightSetup()
@@ -76,12 +90,29 @@ public class GameManager : MonoBehaviour
         if (playerHealth < 100)
         {
             Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
+            playerHealthBar.value = playerHealth;
         }
         else
         {//If we die load the game over scene
             Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
+            playerHealthBar.value = playerHealth;
             GetComponent<ScenesManager>().GameOver();
 
         }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused; //Simple switch statement
+
+        pauseMenu.SetActive(isPaused);//Enable and disable our Pause menu
+
+        if (isPaused) Time.timeScale = 0;
+        else Time.timeScale = 1;
+    }
+
+    public void ScoreSystem()
+    {
+        scoreText.text = "Score: " + GetComponent<ScoreManager>().PlayerScore;
     }
 }

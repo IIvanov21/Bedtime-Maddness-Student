@@ -14,6 +14,7 @@ public class FirstPersonCamera : MonoBehaviour
 
     float xRotation = 0.0f;
 
+    bool captureMouse=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,5 +34,23 @@ public class FirstPersonCamera : MonoBehaviour
         transform.Rotate(Vector3.up * mouseX);
 
         mainCamera.transform.localRotation = Quaternion.Euler(xRotation, 0.0f, 0.0f);
+
+        if(Input.GetKeyDown(KeyCode.Escape)) CaptureMouse();
+    }
+
+    void CaptureMouse()
+    {
+        captureMouse = !captureMouse;
+
+        if (captureMouse)
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        else
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }
     }
 }
