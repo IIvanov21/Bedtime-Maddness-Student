@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
@@ -16,6 +17,12 @@ public class GameManager : MonoBehaviour
     }
     //Player values
     public static int playerHealth = 0;
+
+    //Level UI variables
+    [SerializeField]
+    GameObject pauseMenu;
+
+    bool isPaused=false;
 
     private void Awake()
     {
@@ -34,7 +41,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     void LightSetup()
@@ -82,6 +92,22 @@ public class GameManager : MonoBehaviour
             Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
             GetComponent<ScenesManager>().GameOver();
 
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = !isPaused;//Simple switch statement between true and false     
+
+        pauseMenu.SetActive(isPaused);//Enable/Disable the Pause Menu
+
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
     }
 }
