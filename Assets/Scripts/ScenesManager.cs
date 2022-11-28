@@ -33,10 +33,16 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene("testScene");
     }
 
+    public void MainMenu()
+    {
+        SceneManager.LoadScene((int)Scenes.title);
+    }
+
     public void ExitGame()
     {
+        //This doesn't work for the editor. Only works in actual build application.
         Application.Quit();
     }
 
-    
+
 }

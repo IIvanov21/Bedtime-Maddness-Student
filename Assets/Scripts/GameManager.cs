@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;//UI Components
-using TMPro;//Text Mesh Pro
+using UnityEngine.UI;
+using TMPro;//Including Text Mesh Pro library
+
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
 
@@ -18,14 +19,14 @@ public class GameManager : MonoBehaviour
     //Player values
     public static int playerHealth = 0;
 
-    //Level UI properties
-    bool isPaused = false;
+    //Level UI variables
     [SerializeField]
     GameObject pauseMenu;
 
-    //Property to manage player health
+    bool isPaused=false;
+
     [SerializeField]
-    Slider playerHealthBar;
+    Slider playerSuffocationBar;
 
     [SerializeField]
     TMP_Text scoreText;
@@ -47,8 +48,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) PauseGame();
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseGame();
+        }
     }
 
     void LightSetup()
@@ -90,12 +93,12 @@ public class GameManager : MonoBehaviour
         if (playerHealth < 100)
         {
             Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
-            playerHealthBar.value = playerHealth;
+            playerSuffocationBar.value = playerHealth;
         }
         else
         {//If we die load the game over scene
             Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
-            playerHealthBar.value = playerHealth;
+            playerSuffocationBar.value = playerHealth;
             GetComponent<ScenesManager>().GameOver();
 
         }
@@ -103,12 +106,18 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        isPaused = !isPaused; //Simple switch statement
+        isPaused = !isPaused;//Simple switch statement between true and false     
 
-        pauseMenu.SetActive(isPaused);//Enable and disable our Pause menu
+        pauseMenu.SetActive(isPaused);//Enable/Disable the Pause Menu
 
-        if (isPaused) Time.timeScale = 0;
-        else Time.timeScale = 1;
+        if (isPaused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
+        }
     }
 
     public void ScoreSystem()
