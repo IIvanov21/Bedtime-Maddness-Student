@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;//Including Text Mesh Pro library
 
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
@@ -23,6 +24,12 @@ public class GameManager : MonoBehaviour
     GameObject pauseMenu;
 
     bool isPaused=false;
+
+    [SerializeField]
+    Slider playerSuffocationBar;
+
+    [SerializeField]
+    TMP_Text scoreText;
 
     private void Awake()
     {
@@ -86,10 +93,12 @@ public class GameManager : MonoBehaviour
         if (playerHealth < 100)
         {
             Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
+            playerSuffocationBar.value = playerHealth;
         }
         else
         {//If we die load the game over scene
             Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
+            playerSuffocationBar.value = playerHealth;
             GetComponent<ScenesManager>().GameOver();
 
         }
@@ -109,5 +118,10 @@ public class GameManager : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+    }
+
+    public void ScoreSystem()
+    {
+        scoreText.text = "Score: " + GetComponent<ScoreManager>().PlayerScore;
     }
 }
