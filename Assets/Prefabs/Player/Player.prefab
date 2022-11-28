@@ -96,6 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 7184352048790471550}
+  jumpFactor: 20
   walkingParticles: {fileID: 2226484089486216553}
 --- !u!54 &1377552859521269397
 Rigidbody:

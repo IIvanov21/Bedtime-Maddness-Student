@@ -51,7 +51,7 @@ ModelImporter:
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
     importConstraints: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -107,7 +107,142 @@ ModelImporter:
   humanDescription:
     serializedVersion: 3
     human: []
-    skeleton: []
+    skeleton:
+    - name: Baby (2)(Clone)
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: BabyRig
+      parentName: Baby (2)(Clone)
+      position: {x: 0, y: 0, z: 0.056315526}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 100, y: 100, z: 100}
+    - name: lowerTorso
+      parentName: BabyRig
+      position: {x: -1.5664685e-19, y: 0.0004404434, z: 0.0023150316}
+      rotation: {x: 0.7633537, y: -0.0000000770069, z: -0.00000009099884, w: 0.64598083}
+      scale: {x: 1, y: 0.9999998, z: 0.9999998}
+    - name: upperTorso
+      parentName: lowerTorso
+      position: {x: -1.5664682e-19, y: 0.0026626133, z: 0}
+      rotation: {x: -0.08299526, y: 0.000000118797985, z: 0.000000009893793, w: 0.99654996}
+      scale: {x: 1, y: 0.99999976, z: 0.99999976}
+    - name: head
+      parentName: upperTorso
+      position: {x: -0, y: 0.0015657934, z: 0}
+      rotation: {x: -0, y: -0, z: 8.881782e-16, w: 1}
+      scale: {x: 1, y: 1.0000001, z: 1.0000001}
+    - name: abEye.R
+      parentName: head
+      position: {x: 0.001549028, y: 0.00411194, z: 0.0018633235}
+      rotation: {x: -0.7071068, y: 5.024296e-15, z: 6.280372e-15, w: 0.7071067}
+      scale: {x: 0.01, y: 0.010000001, z: 0.010000001}
+    - name: abEye.L
+      parentName: head
+      position: {x: -0.0015939273, y: 0.00411194, z: 0.0018633235}
+      rotation: {x: -0.7071068, y: 5.024296e-15, z: 6.280372e-15, w: 0.7071067}
+      scale: {x: 0.01, y: 0.010000001, z: 0.010000001}
+    - name: shoulder.L
+      parentName: upperTorso
+      position: {x: -0, y: 0.0015657934, z: 0}
+      rotation: {x: 0.0000001899898, y: -0.00000008429205, z: 0.76073396, w: 0.64906394}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1.0000001}
+    - name: upperArm.L
+      parentName: shoulder.L
+      position: {x: -8.881784e-18, y: 0.0018089297, z: 2.3536727e-16}
+      rotation: {x: -0.030419834, y: -0.01277438, z: -0.06092155, w: 0.99759716}
+      scale: {x: 1.0000007, y: 1.0000006, z: 1}
+    - name: lowerArm.L
+      parentName: upperArm.L
+      position: {x: 2.4214386e-10, y: 0.0016347612, z: -9.313225e-11}
+      rotation: {x: 0.23756906, y: -0.0015841752, z: 0.022176655, w: 0.9711161}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000002}
+    - name: shoulder.R
+      parentName: upperTorso
+      position: {x: -0, y: 0.0015657934, z: 0}
+      rotation: {x: 0.0000001899898, y: 0.000000064719565, z: -0.76073396, w: 0.64906394}
+      scale: {x: 0.99999976, y: 0.99999976, z: 1.0000001}
+    - name: upperArm.R
+      parentName: shoulder.R
+      position: {x: 8.881784e-18, y: 0.0018089297, z: 2.375877e-16}
+      rotation: {x: -0.030419694, y: 0.012774311, z: 0.060921907, w: 0.9975971}
+      scale: {x: 1.0000007, y: 1.0000007, z: 1}
+    - name: lowerArm.R
+      parentName: upperArm.R
+      position: {x: -2.4214386e-10, y: 0.0016347612, z: -9.313225e-11}
+      rotation: {x: 0.054993853, y: -0.03835196, z: -0.17998359, w: 0.981382}
+      scale: {x: 1.0000005, y: 1.0000007, z: 1.0000001}
+    - name: pistol
+      parentName: lowerArm.R
+      position: {x: -0.0020054765, y: 0.004331552, z: 0.000070925875}
+      rotation: {x: -0.4726681, y: -0.5068401, z: 0.60041076, w: 0.39900488}
+      scale: {x: 0.009999995, y: 0.01, z: 0.01}
+    - name: hip.L
+      parentName: BabyRig
+      position: {x: -1.5357535e-19, y: 0.00042420696, z: 0.002301199}
+      rotation: {x: 0.20785895, y: -0.07227882, z: -0.61718756, w: -0.7554138}
+      scale: {x: 1.0000006, y: 1.000001, z: 1.0000008}
+    - name: upperLeg.L
+      parentName: hip.L
+      position: {x: -5.5879353e-11, y: 0.0009156459, z: 8.381903e-11}
+      rotation: {x: 0.5205991, y: 0.21095459, z: -0.0013267099, w: -0.82732886}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.99999976}
+    - name: lowerLeg.L
+      parentName: upperLeg.L
+      position: {x: 9.3132255e-12, y: 0.0009894057, z: -4.3364708e-11}
+      rotation: {x: 0.26673043, y: -0.0005495548, z: 0.15803516, w: -0.95072585}
+      scale: {x: 0.99999994, y: 1.0000006, z: 0.9999998}
+    - name: foot.L
+      parentName: lowerLeg.L
+      position: {x: 2.6586376e-12, y: 0.00096753426, z: 5.4564457e-11}
+      rotation: {x: -0.10346342, y: 0.0835728, z: -0.77025515, w: -0.62371296}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: hip.R
+      parentName: BabyRig
+      position: {x: 1.5357535e-19, y: 0.00042420696, z: 0.002301199}
+      rotation: {x: 0.20785895, y: 0.07227882, z: 0.61718756, w: -0.7554138}
+      scale: {x: 1.0000006, y: 1.000001, z: 1.0000008}
+    - name: upperLeg.R
+      parentName: hip.R
+      position: {x: 5.5879353e-11, y: 0.0009156459, z: 8.381903e-11}
+      rotation: {x: -0.5205991, y: 0.21095459, z: -0.0013267099, w: 0.82732886}
+      scale: {x: 0.9999997, y: 0.9999997, z: 0.99999976}
+    - name: lowerLeg.R
+      parentName: upperLeg.R
+      position: {x: -9.3132255e-12, y: 0.0009894057, z: -4.3364708e-11}
+      rotation: {x: -0.26673043, y: -0.0005495548, z: 0.15803516, w: 0.95072585}
+      scale: {x: 0.99999994, y: 1.0000006, z: 0.9999998}
+    - name: foot.R
+      parentName: lowerLeg.R
+      position: {x: -2.6586376e-12, y: 0.00096753426, z: 5.4564457e-11}
+      rotation: {x: 0.10346342, y: 0.0835728, z: -0.77025515, w: 0.62371296}
+      scale: {x: 1.0000002, y: 1.0000002, z: 1.0000002}
+    - name: IK_Foot.L
+      parentName: BabyRig
+      position: {x: -0.0014206833, y: 0.0005210368, z: 0.0003313696}
+      rotation: {x: 0.000000029802322, y: 0.7071068, z: -0.000000029802322, w: -0.7071068}
+      scale: {x: 0.99999976, y: 0.99999994, z: 0.9999997}
+    - name: IK_Foot.R
+      parentName: BabyRig
+      position: {x: 0.0014206833, y: 0.0005210368, z: 0.0003313696}
+      rotation: {x: 0.000000029802322, y: -0.7071068, z: 0.000000029802322, w: -0.7071068}
+      scale: {x: 0.99999976, y: 0.99999994, z: 0.9999997}
+    - name: IK_Arm.L
+      parentName: BabyRig
+      position: {x: -0.003313849, y: 0.0005006156, z: 0.0026020252}
+      rotation: {x: -0.000000059604645, y: -0.77178866, z: -0, w: 0.6358793}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
+    - name: IK_Arm.R
+      parentName: BabyRig
+      position: {x: 0.003313849, y: 0.0005006156, z: 0.0026020252}
+      rotation: {x: 0.000000059604645, y: -0.77178866, z: -0, w: -0.6358793}
+      scale: {x: 1.0000002, y: 1.0000004, z: 1.0000001}
+    - name: angryBabyLP
+      parentName: Baby (2)(Clone)
+      position: {x: -0, y: 0.000907138, z: 0.0000016292067}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+      scale: {x: 1, y: 1, z: 1}
     armTwist: 0.5
     foreArmTwist: 0.5
     upperLegTwist: 0.5
@@ -118,11 +253,11 @@ ModelImporter:
     globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
-    hasExtraRoot: 0
+    hasExtraRoot: 1
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
   autoGenerateAvatarMappingIfUnspecified: 1
-  animationType: 2
+  animationType: 3
   humanoidOversampling: 1
   avatarSetup: 1
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1

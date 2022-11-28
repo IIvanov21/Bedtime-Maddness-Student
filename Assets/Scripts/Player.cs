@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour, IActorTemplate
 {
 
@@ -19,6 +20,11 @@ public class Player : MonoBehaviour, IActorTemplate
     float horizontalInput;
     float verticalInput;
 
+    //RigidBody variable to manage our physics
+    Rigidbody rigidBody;
+
+    [SerializeField, Range(1.0f,20.0f)]
+    float jumpFactor = 20.0f;
 
     public int Health
     {
@@ -40,6 +46,7 @@ public class Player : MonoBehaviour, IActorTemplate
     void Start()
     {
         _Player = GameObject.Find("_Player");
+        rigidBody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -49,6 +56,9 @@ public class Player : MonoBehaviour, IActorTemplate
 
         //Create the Attack function
         Attack();
+
+        //Jump here
+        Jump();
     }
 
     
@@ -123,5 +133,18 @@ public class Player : MonoBehaviour, IActorTemplate
     {
         if (horizontalInput == 0 && verticalInput == 0) walkingParticles.Stop();// If we are idle Stop the particle system
         else if (!walkingParticles.isPlaying) walkingParticles.Play();//If we are moving Start the particle system
+    }
+
+    void Jump()
+    {
+        if (Input.GetButtonDown("Jump"))
+        {
+            //Debug.Log("I am meant to be jumping!");
+            if (rigidBody != null)
+            {
+               Debug.Log("We do have a rigid body!");
+               rigidBody.AddForce(Vector3.up * jumpFactor, ForceMode.Impulse);
+            }
+        }
     }
 }
