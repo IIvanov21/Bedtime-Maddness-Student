@@ -119,11 +119,11 @@ public class Player : MonoBehaviour, IActorTemplate
             if (health < 100)
             {
                 TakeDamage(otherCollider.GetComponent<IActorTemplate>().SendDamage());
-                GameManager.Instance.LifeSystemTracker();
+                LevelUI.onLifeUpdate?.Invoke();
             }
             else
             {
-                GameManager.Instance.LifeSystemTracker();
+                LevelUI.onLifeUpdate?.Invoke();
                 Die();
             }
         }
