@@ -8,7 +8,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Brick
-    second: {fileID: 2100000, guid: 7d9f0f179f1d4cc48bfed8671c369344, type: 2}
+    second: {fileID: 2100000, guid: 78bc84ee78270cd4295d8b72cc161189, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -28,12 +28,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Wallpaper
-    second: {fileID: 2100000, guid: cdebc2f28e7516041af0ef033972080a, type: 2}
+    second: {fileID: 2100000, guid: b8fd1f1b0278c0e4f92caa2b250fff46, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: carpetFloor
-    second: {fileID: 2100000, guid: fd7038418db2979498a72df593c6f2dc, type: 2}
+    second: {fileID: 2100000, guid: 4aa3650def535024587211aa1ecf5da6, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -43,12 +43,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: woodFloor
-    second: {fileID: 2100000, guid: 179d4963b24e8f441aabc270ca2ad8d6, type: 2}
+    second: {fileID: 2100000, guid: bde6caff18d31c14b9e0bdee8629e23d, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: woodPosts
-    second: {fileID: 2100000, guid: 179d4963b24e8f441aabc270ca2ad8d6, type: 2}
+    second: {fileID: 2100000, guid: e75cf15cde1add6488d5dea500d5c2f2, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

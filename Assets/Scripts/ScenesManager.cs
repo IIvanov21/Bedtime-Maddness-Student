@@ -30,7 +30,8 @@ public class ScenesManager : MonoBehaviour
 
     public void BeginGame()
     {
-        SceneManager.LoadScene("testScene");
+        SceneManager.LoadScene((int)Scenes.waveOne);
+        GameManager.currentScene = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     public void MainMenu()
@@ -44,5 +45,22 @@ public class ScenesManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void NextLevel()
+    {
+        switch(GameManager.currentScene)
+        {
+            default:
+                {
+                    Debug.Log("Changing scene to: " + GameManager.currentScene);
+                    break;
+                }
+            case 2: case 3: case 4: case 5:
+                {
+                    SceneManager.LoadScene(GameManager.currentScene+1);
+                    GameManager.currentScene++;
+                    break;
+                }
+        }
+    }
 
 }

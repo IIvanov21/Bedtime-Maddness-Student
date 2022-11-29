@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;//Including Text Mesh Pro library
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
@@ -19,17 +20,8 @@ public class GameManager : MonoBehaviour
     //Player values
     public static int playerHealth = 0;
 
-    //Level UI variables
-    [SerializeField]
-    GameObject pauseMenu;
-
-    bool isPaused=false;
-
-    [SerializeField]
-    Slider playerSuffocationBar;
-
-    [SerializeField]
-    TMP_Text scoreText;
+    //Track the current scene index
+    public static int currentScene = 0;
 
     private void Awake()
     {
@@ -43,16 +35,13 @@ public class GameManager : MonoBehaviour
 
         //Set our score to 0 at the beginning of our game
         GetComponent<ScoreManager>().ResetScore();
+
+        //Capturing the current scene number to allow easier use for transitions
+        //between levels.
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            PauseGame();
-        }
-    }
+    
 
     void LightSetup()
     {
@@ -88,40 +77,5 @@ public class GameManager : MonoBehaviour
         else Destroy(this.gameObject);//Destroy the new instance if a singleton already exist
     }
 
-    public void LifeSystemTracker()
-    {
-        if (playerHealth < 100)
-        {
-            Debug.Log("Player's current suffocation level is: " + playerHealth + "%");
-            playerSuffocationBar.value = playerHealth;
-        }
-        else
-        {//If we die load the game over scene
-            Debug.Log("Player's current suffocation level is: " + playerHealth + "% We are dead!");
-            playerSuffocationBar.value = playerHealth;
-            GetComponent<ScenesManager>().GameOver();
-
-        }
-    }
-
-    public void PauseGame()
-    {
-        isPaused = !isPaused;//Simple switch statement between true and false     
-
-        pauseMenu.SetActive(isPaused);//Enable/Disable the Pause Menu
-
-        if (isPaused)
-        {
-            Time.timeScale = 0;
-        }
-        else
-        {
-            Time.timeScale = 1;
-        }
-    }
-
-    public void ScoreSystem()
-    {
-        scoreText.text = "Score: " + GetComponent<ScoreManager>().PlayerScore;
-    }
+   
 }
