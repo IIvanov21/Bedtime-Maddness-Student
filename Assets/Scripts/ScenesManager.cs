@@ -24,6 +24,8 @@ public class ScenesManager : MonoBehaviour
 
     public void GameOver()
     {
+        CursorManager.cursorDelegate?.Invoke(false);
+
         SceneManager.LoadScene((int)Scenes.gameOver);
         
     }
@@ -32,6 +34,7 @@ public class ScenesManager : MonoBehaviour
     {
         SceneManager.LoadScene((int)Scenes.waveOne);
         GameManager.currentScene = SceneManager.GetActiveScene().buildIndex + 1;
+        CursorManager.cursorDelegate?.Invoke(true);
     }
 
     public void MainMenu()
@@ -54,12 +57,19 @@ public class ScenesManager : MonoBehaviour
                     Debug.Log("Changing scene to: " + GameManager.currentScene);
                     break;
                 }
-            case 2: case 3: case 4: case 5:
+            case 2: case 3: case 4:
                 {
                     SceneManager.LoadScene(GameManager.currentScene+1);
                     GameManager.currentScene++;
+                    CursorManager.cursorDelegate?.Invoke(true);
                     break;
                 }
+            case 5:
+                {
+                    GameOver();
+                    break;
+                }
+
         }
     }
 

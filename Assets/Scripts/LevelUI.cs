@@ -36,6 +36,7 @@ public class LevelUI : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             PauseGame();
+            
         }
     }
 
@@ -69,6 +70,8 @@ public class LevelUI : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+        Debug.Log("The Game is Paused: " + isPaused);
+        CursorManager.cursorDelegate?.Invoke(!isPaused);
     }
 
     public void ScoreSystem()
