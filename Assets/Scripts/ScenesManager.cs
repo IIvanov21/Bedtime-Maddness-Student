@@ -24,18 +24,22 @@ public class ScenesManager : MonoBehaviour
 
     public void GameOver()
     {
+        CursorManager.cursorDelegate?.Invoke(false);
         SceneManager.LoadScene((int)Scenes.gameOver);
         
     }
 
     public void BeginGame()
     {
-        SceneManager.LoadScene("testScene");
+        SceneManager.LoadScene((int)Scenes.waveOne);
+        GameManager.currentScene++;
+        CursorManager.cursorDelegate?.Invoke(true);
     }
 
     public void MainMenu()
     {
         SceneManager.LoadScene((int)Scenes.title);
+        GameManager.currentScene = (int)Scenes.title;
     }
 
     public void ExitGame()
@@ -44,5 +48,22 @@ public class ScenesManager : MonoBehaviour
         Application.Quit();
     }
 
-
+    public void NextLevel()
+    {
+        switch (GameManager.currentScene)
+        {
+            case 2: case 3: case 4:
+                {
+                    SceneManager.LoadScene(GameManager.currentScene + 1);
+                    GameManager.currentScene++;
+                    CursorManager.cursorDelegate?.Invoke(true);
+                    break;
+                }
+            case 5:
+                {
+                    GameOver();
+                    break;
+                }
+        }
+    }
 }

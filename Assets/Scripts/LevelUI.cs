@@ -71,6 +71,8 @@ public class LevelUI : MonoBehaviour
         {
             Time.timeScale = 1;
         }
+
+        CursorManager.cursorDelegate?.Invoke(!isPaused);
     }
 
     public void ScoreSystem()

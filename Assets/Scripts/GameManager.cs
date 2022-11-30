@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;//Including Text Mesh Pro library
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(ScoreManager))]
 [RequireComponent(typeof(ScenesManager))]
@@ -20,7 +21,7 @@ public class GameManager : MonoBehaviour
     //Player values
     public static int playerHealth = 0;
 
-   
+    public static int currentScene=0;
 
     private void Awake()
     {
@@ -34,6 +35,8 @@ public class GameManager : MonoBehaviour
 
         //Set our score to 0 at the beginning of our game
         GetComponent<ScoreManager>().ResetScore();
+
+        currentScene = SceneManager.GetActiveScene().buildIndex;
     }
 
  
