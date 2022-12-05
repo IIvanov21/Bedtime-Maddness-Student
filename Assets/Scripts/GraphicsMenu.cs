@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class GraphicsMenu : MonoBehaviour
 {
+    [SerializeField]
+    private Toggle fullScreenTog, vSyncTog;
+
     [SerializeField]
     TMP_Text resolutionText;
     public List<ResItem> resolutions = new List<ResItem>();
@@ -17,6 +21,20 @@ public class GraphicsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Full Screen check
+        fullScreenTog.isOn = Screen.fullScreen;
+
+        //VSync Check
+        if (QualitySettings.vSyncCount == 0)
+        {
+            vSyncTog.isOn = false;
+        }
+        else
+        {
+            vSyncTog.isOn=true;
+        }
+
+        //Resolution Check
         bool foundRes = false;
 
         for (int i = 0; i < resolutions.Count; i++)
@@ -61,8 +79,16 @@ public class GraphicsMenu : MonoBehaviour
 
     public void ApplyGraphics()
     {
-        //Set the resolution
-        Screen.SetResolution(resolutions[resolutionIndex].horizontal, resolutions[resolutionIndex].vertical, false);
+        //VSync handler
+        if (vSyncTog.isOn)
+        {
+            QualitySettings.vSyncCount = 1;
+        }
+        else QualitySettings.vSyncCount = 0;
+        
+
+        //Set the resolution and fullscreen mode
+        Screen.SetResolution(resolutions[resolutionIndex].horizontal, resolutions[resolutionIndex].vertical, fullScreenTog.isOn);
 
         //Set the quality settings
         QualitySettings.SetQualityLevel(qualityIndex);
