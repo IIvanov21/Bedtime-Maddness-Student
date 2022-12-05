@@ -2,8 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
+
 public class GraphicsMenu : MonoBehaviour
 {
+    [SerializeField]
+    private Toggle fullScreenToggle, vSyncToggle;
+
     [SerializeField]
     TMP_Text resolutionText;
     public List<ResItem> resolutions = new List<ResItem>();
@@ -17,6 +22,19 @@ public class GraphicsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //FullScreen handle
+        fullScreenToggle.isOn = Screen.fullScreen;
+
+        //VSync handle
+        if (QualitySettings.vSyncCount == 0)
+        {
+            vSyncToggle.isOn = false;
+        }
+        else 
+        {
+            vSyncToggle.isOn = true;
+        }
+
         //Handle custom resolutions by extracting current Screen width and height from the Users system
         bool foundRes = false;
 
@@ -61,8 +79,17 @@ public class GraphicsMenu : MonoBehaviour
 
     public void ApplyGraphics()
     {
+        //VSync handler
+        if (vSyncToggle.isOn)
+        {
+            QualitySettings.vSyncCount = 1;//Enabled our VSync
+        }
+        else
+        {
+            QualitySettings.vSyncCount=0;//Disabled our VSync
+        }
         //Handle resolutions settings
-        Screen.SetResolution(resolutions[resolutionIndex].horizontal, resolutions[resolutionIndex].vertical, false);
+        Screen.SetResolution(resolutions[resolutionIndex].horizontal, resolutions[resolutionIndex].vertical, fullScreenToggle.isOn);
 
         //Handle quality settings
         QualitySettings.SetQualityLevel(qualityIndex);
