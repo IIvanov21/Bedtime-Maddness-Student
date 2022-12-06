@@ -65,10 +65,13 @@ public class LevelUI : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
+            AudioListener.pause = true;
         }
         else
         {
             Time.timeScale = 1;
+            AudioListener.pause = false;
+
         }
         Debug.Log("The Game is Paused: " + isPaused);
         CursorManager.cursorDelegate?.Invoke(!isPaused);
