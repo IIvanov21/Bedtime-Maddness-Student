@@ -51,14 +51,17 @@ public class Player : MonoBehaviour, IActorTemplate
 
     void Update()
     {
-        //Creating the Move function
-        Move();
+        if (GameManager.State == GameState.Play)
+        {
+            //Creating the Move function
+            Move();
 
-        //Create the Attack function
-        Attack();
+            //Create the Attack function
+            Attack();
 
-        //Jump here
-        Jump();
+            //Jump here
+            Jump();
+        }
     }
 
     

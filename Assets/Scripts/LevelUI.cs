@@ -66,10 +66,12 @@ public class LevelUI : MonoBehaviour
         if (isPaused)
         {
             Time.timeScale = 0;
+            GameManager.State = GameState.Pause;
         }
         else
         {
             Time.timeScale = 1;
+            GameManager.State = GameState.Play;
         }
 
         CursorManager.cursorDelegate?.Invoke(!isPaused);

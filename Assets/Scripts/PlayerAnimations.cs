@@ -25,18 +25,21 @@ public class PlayerAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        horizontal = Input.GetAxis("Horizontal");
-        vertical = Input.GetAxis("Vertical");
-
-        MoveAnimation();
-
-        if (Input.GetButtonDown("Fire1"))
+        if (GameManager.State == GameState.Play)
         {
-            ShootingAnimation();
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            ShootingAnimation();
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+
+            MoveAnimation();
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                ShootingAnimation();
+            }
+            else if (Input.GetButtonUp("Fire1"))
+            {
+                ShootingAnimation();
+            }
         }
     }
 

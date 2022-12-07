@@ -23,6 +23,14 @@ public class GameManager : MonoBehaviour
 
     public static int currentScene=0;
 
+    //Game State Controller
+    private static GameState state = GameState.None;
+    public static GameState State
+    {
+        get { return state; }
+        set { state = value; }
+    }
+
     private void Awake()
     {
         CheckGameManager();
@@ -76,4 +84,12 @@ public class GameManager : MonoBehaviour
     }
 
     
+}
+
+public enum GameState
+{
+    None,
+    Play,
+    Pause,
+    GameOver
 }

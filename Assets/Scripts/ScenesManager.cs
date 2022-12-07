@@ -34,6 +34,7 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene((int)Scenes.waveOne);
         GameManager.currentScene++;
         CursorManager.cursorDelegate?.Invoke(true);
+        GameManager.State = GameState.Play;
     }
 
     public void MainMenu()
