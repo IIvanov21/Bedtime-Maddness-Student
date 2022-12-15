@@ -53,6 +53,9 @@ public class Player : MonoBehaviour, IActorTemplate
     {
         if (GameManager.State == GameState.Play)
         {
+            //Updating the player's global position variable
+            UpdatePlayersPosition();    
+
             //Creating the Move function
             Move();
 
@@ -64,7 +67,10 @@ public class Player : MonoBehaviour, IActorTemplate
         }
     }
 
-    
+    void UpdatePlayersPosition()
+    {
+        GameManager.playerPosition = transform.position;
+    }
 
     void Move()
     {

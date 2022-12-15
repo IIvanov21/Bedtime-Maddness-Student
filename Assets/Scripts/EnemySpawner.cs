@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour
         {
             GameObject enemyObject = CreateEnemy();
             enemyObject.transform.SetParent(_Enemies.transform);
-            enemyObject.transform.position = transform.position;
+            //enemyObject.transform.position = transform.position;
 
             yield return new WaitForSeconds(spawnRate);
         }
@@ -41,7 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
     GameObject CreateEnemy()
     {
-        GameObject enemy = GameObject.Instantiate(actorModel.actor) as GameObject;
+        GameObject enemy = GameObject.Instantiate(actorModel.actor, transform.position,transform.rotation) as GameObject;
 
         enemy.GetComponent<IActorTemplate>().ActorStats(actorModel);
         enemy.name=actorModel.name;

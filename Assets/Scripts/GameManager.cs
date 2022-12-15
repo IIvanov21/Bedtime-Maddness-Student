@@ -20,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     //Player values
     public static int playerHealth = 0;
-
     public static int currentScene=0;
+    public static Vector3 playerPosition;
 
     //Game State Controller
     private static GameState state = GameState.None;
