@@ -51,7 +51,7 @@ public class LevelUI : MonoBehaviour
         {//If we die load the game over scene
             Debug.Log("Player's current suffocation level is: " + GameManager.playerHealth + "% We are dead!");
             playerSuffocationBar.value = GameManager.playerHealth;
-            GetComponent<ScenesManager>().GameOver();
+            GameManager.Instance.GetComponent<ScenesManager>().GameOver();
 
         }
     }

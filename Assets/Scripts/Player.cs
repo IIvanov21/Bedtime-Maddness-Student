@@ -44,6 +44,8 @@ public class Player : MonoBehaviour, IActorTemplate
 
     void Update()
     {
+        UpdatePlayerPosition();
+
         //Creating the Move function
         Move();
 
@@ -51,7 +53,10 @@ public class Player : MonoBehaviour, IActorTemplate
         Attack();
     }
 
-    
+    void UpdatePlayerPosition()
+    {
+        GameManager.playerPosition=transform.position;
+    }
 
     void Move()
     {

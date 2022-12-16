@@ -17,8 +17,14 @@ public class GameManager : MonoBehaviour
         get { return instance; }
         private set { instance = value; }
     }
+
+    public static int difficulty=1;
+
     //Player values
     public static int playerHealth = 0;
+
+    //Player Position variable
+    public static Vector3 playerPosition = Vector3.zero;
 
     //Track the current scene index
     public static int currentScene = 0;
