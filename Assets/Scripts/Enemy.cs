@@ -21,6 +21,11 @@ public class Enemy : MonoBehaviour, IActorTemplate
     private Vector3 startingPos;//Patrol Point A
     private bool patrolSwitch=true;//Simple switch between the two patrol points
 
+    //Boss values
+    [SerializeField] Transform shootPosition;
+    GameObject bullet;
+    bool shoot = true;
+
     public void ActorStats(SOActorModel actorModel)
     {
         speed = actorModel.speed;
@@ -28,6 +33,7 @@ public class Enemy : MonoBehaviour, IActorTemplate
         hitPower = actorModel.hitPower;
         score= actorModel.score;
         actorType = actorModel.actorType;
+        bullet = actorModel.actorBullets;
     }
 
     void Start()
@@ -51,19 +57,25 @@ public class Enemy : MonoBehaviour, IActorTemplate
             ChasePlayer();
 
             Patrol();
+
+            if (actorType == SOActorModel.ActorType.BossTeddyBear)
+            {
+                if (agent.stoppingDistance <= 3.0f) Fire();
+            }
         }
     }
 
 
     void ChasePlayer()
     {
-        if (actorType == SOActorModel.ActorType.SmallTeddyBear)
-        {
-            agent.destination = GameManager.playerPosition;
-        }
-        else if (actorType == SOActorModel.ActorType.BigTeddyBear)
+       if (actorType == SOActorModel.ActorType.BigTeddyBear)
         {
             //agent.destination = GameManager.playerPosition;
+        }
+        else /*if (actorType == SOActorModel.ActorType.BossTeddyBear)*/
+        {
+            agent.destination = GameManager.playerPosition;
+
         }
     }
 
@@ -71,6 +83,11 @@ public class Enemy : MonoBehaviour, IActorTemplate
     public void Die()
     {
         Destroy(gameObject);
+
+        if (actorType == SOActorModel.ActorType.BossTeddyBear)
+        {
+            GameManager.Instance.GetComponent<ScenesManager>().GameOver();
+        }
     }
 
     public int SendDamage()
@@ -120,5 +137,18 @@ public class Enemy : MonoBehaviour, IActorTemplate
                 if (distanceToPatrolPoint < agent.stoppingDistance) patrolSwitch = true;
             }
         }
+    }
+
+    void Fire()
+    {
+        if (shoot) StartCoroutine(CreateBullet());
+    }
+
+    IEnumerator CreateBullet()
+    {
+        Instantiate(bullet, shootPosition.position, shootPosition.rotation);
+        shoot = false;
+        yield return new WaitForSeconds(2.0f);
+        shoot = true;
     }
 }
